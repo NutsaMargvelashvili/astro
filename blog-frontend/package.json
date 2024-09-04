@@ -30,7 +30,8 @@
     "redux": "^4.0.1",
     "redux-actions": "^2.6.5",
     "redux-pender": "^2.0.12",
-    "sass": "^1.77.8"
+    "sass": "^1.77.8",
+    "styled-components": "5.2.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,14 +1,12 @@
 import React, { Component, Fragment } from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import * as postActions from "store/modules/post";
-import PostList from "components/PostList";
+import App from "../components/Skymap/App"
 
 class AstroMapContainer extends Component {
     render() {
         return (
             <Fragment>
                 AstroMAAAAAp
+                <App/>
             </Fragment>
         );
     }
