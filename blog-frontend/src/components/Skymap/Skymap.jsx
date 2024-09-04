@@ -187,7 +187,7 @@ function Skymap(props) {
 
         <div
             id="aladin-lite-div"
-            style={{ width: "700px", height: "400px" }}
+            style={{ width: "1000px", height: "600px" }}
         ></div>
       </Wrapper>
 )

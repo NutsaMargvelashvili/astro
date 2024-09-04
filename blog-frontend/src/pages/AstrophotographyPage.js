@@ -1,14 +1,14 @@
 import React from 'react';
 import PageTemplate from '../components/common/PageTemplate'
-import AstroMapContainer from '../containers/AstroMapContainer'
 import HeaderContainer from 'containers/HeaderContainer'
+import AstrophotographyContainer from "../containers/AstrophotographyContainer";
 
-const AstroMapPage = () => {
+const AstrophotographyPage = () => {
     return (
         <PageTemplate header={<HeaderContainer/>}>
-            <AstroMapContainer/>
+            <AstrophotographyContainer/>
         </PageTemplate>
     );
 };
 
-export default AstroMapPage;
+export default AstrophotographyPage;

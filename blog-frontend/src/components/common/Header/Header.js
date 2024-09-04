@@ -46,10 +46,7 @@ class Header extends Component {
                     <NavLink to="/astromap">Astro Map</NavLink>
                   </NavItem>
                   <NavItem>
-                    <NavLink to="/login">About</NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink to="/contact">Contact</NavLink>
+                    <NavLink to="/astrophotography">Astrophotography</NavLink>
                   </NavItem>
                   <AccountMenu isAuthenticated={isAuthenticated} onLogout={onLogout} />
                 </Nav>
