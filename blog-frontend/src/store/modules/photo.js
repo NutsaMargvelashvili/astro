@@ -12,7 +12,7 @@ const UPLOAD_PHOTO = 'photo/UPLOAD_PHOTO';
 export const getPhotoList = createAction(GET_PHOTO_LIST, api.getPhotos);
 export const uploadPhoto = createAction(UPLOAD_PHOTO, api.uploadPhoto);
 
-
+console.log("herrrrrrrrrrrre");
 
 // Initial State
 const initialState = Map({

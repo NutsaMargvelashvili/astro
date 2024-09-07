@@ -38,8 +38,8 @@ class AstrophotographyContainer extends Component {
                             <p>No photos available</p>
                         ) : (
                             photos?.map(photo => (
-                                <div key={photo?.get('id')}>
-                                    <img src={photo?.get('fileUrl')} alt={photo?.get('fileName')} />
+                                <div className={"astrophotography-wrapper"} key={photo?.get('id')}>
+                                    <img className={"astrophotography-image"} src={photo?.get('fileUrl')} alt={photo?.get('fileName')} />
                                     <p>{photo?.get('fileName')}</p>
                                 </div>
                             ))
