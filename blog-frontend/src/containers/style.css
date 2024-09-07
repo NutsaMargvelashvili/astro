@@ -318,12 +318,30 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    h1{
-        font-size: 34px;
-        text-transform: uppercase;
-        letter-spacing: 10px;
-        color: #710338;
-        text-align: center;
+    .astrophotography-caption{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        h1{
+            font-size: 34px;
+            text-transform: uppercase;
+            letter-spacing: 10px;
+            color: #710338;
+            text-align: center;
+        }
+        .astrophotography-upload-btn {
+            color: #710338;
+            background-color: #fff !important;
+            border-color: #710338 !important;
+            border-radius: 40px !important;
+            cursor: pointer;
+            width: fit-content;
+        }
+        .astrophotography-upload-btn:hover{
+            color: #fff;
+            background-color: #710338 !important;
+        }
     }
     .astrophotography-image-wrapper{
         .astrophotography-image{
@@ -336,5 +354,6 @@
         .astrophotography-image:hover{
             opacity: 80%;
         }
+
     }
 }

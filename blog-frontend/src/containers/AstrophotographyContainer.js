@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as photoActions from "store/modules/photo";
 import { withRouter } from 'react-router-dom';
+import {Button} from "reactstrap";
 
 class AstrophotographyContainer extends Component {
 
@@ -34,7 +35,10 @@ class AstrophotographyContainer extends Component {
                 {error && <h1>Server Error!</h1>}
                 {!error &&
                     <div className={"astrophotography-wrapper"}>
-                        <h1>Astrophotography</h1>
+                        <div className={"astrophotography-caption"}>
+                            <h1>Astrophotography</h1>
+                            <Button className={"astrophotography-upload-btn"}>Upload Your AstroMasterpiece</Button>
+                        </div>
                         {photos?.size === 0 ? (
                             <p>No photos available</p>
                         ) : (
