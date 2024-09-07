@@ -3,6 +3,7 @@ import moment from 'moment';
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Photo.scss';
+import {Button} from "reactstrap";
 
 const cx = classNames.bind(styles);
 
@@ -18,6 +19,11 @@ const Photo = ({ photo }) => {
                 <div className={cx("photo-header")}>
                     <h2 className={cx("photo-title")}>
                         <Link to={"/photos/" + photo.get("id")}>{photo.get("fileName")}</Link>
+                        <Button
+                            tag={Link}
+                            to={"/astrophotography"}>
+                            Back
+                        </Button>
                     </h2>
 
                     <div className={cx("photo-meta")}>
