@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as photoActions from "store/modules/photo";
-import { withRouter } from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import {Button} from "reactstrap";
 
 class AstrophotographyContainer extends Component {
@@ -43,10 +43,14 @@ class AstrophotographyContainer extends Component {
                             <p>No photos available</p>
                         ) : (
                             photos?.map(photo => (
-                                <div className={"astrophotography-image-wrapper"} key={photo?.get('id')}>
-                                    <img className={"astrophotography-image"} src={photo?.get('fileUrl')} alt={photo?.get('fileName')} />
-                                    {/*<p>{photo?.get('fileName')}</p>*/}
-                                </div>
+                                <Button tag={Link}
+                                        to={"/photo/" + photo.get("id")}>
+                                    <div className={"astrophotography-image-wrapper"} key={photo?.get('id')}>
+                                        <img className={"astrophotography-image"} src={photo?.get('fileUrl')}
+                                             alt={photo?.get('fileName')}/>
+                                        {/*<p>{photo?.get('fileName')}</p>*/}
+                                    </div>
+                                </Button>
                             ))
                         )}
                     </div>

@@ -2,19 +2,30 @@ package me.ktkim.blog.model.dto;
 
 public class PhotoDto {
 
+
+    private Long id; // Assuming ID is of type Long, adjust if necessary
     private String fileName;
     private String fileUrl;
 
     // Constructors
     public PhotoDto() {}
 
-    public PhotoDto(String fileName, String fileUrl) {
+    public PhotoDto(Long id, String fileName, String fileUrl) {
         System.out.println("here");
+        this.id = id;
         this.fileName = fileName;
         this.fileUrl = fileUrl;
     }
 
     // Getters and Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getFileName() {
         return fileName;
     }

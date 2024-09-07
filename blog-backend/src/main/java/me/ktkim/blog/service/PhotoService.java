@@ -6,7 +6,6 @@ import me.ktkim.blog.repository.PhotoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -50,16 +49,16 @@ public class PhotoService {
         // Assuming you have a method to set the user
         // photo.setUser(user);
 
-        photoRepository.save(photo);
+        photo = photoRepository.save(photo);
 
-        return new PhotoDto(uniqueFileName, fileUrl);
+        return new PhotoDto(photo.getId(), photo.getFileName(), photo.getFileUrl());
     }
 
     public List<PhotoDto> getPhotoFeed() {
         // Fetch photos from the repository and convert to PhotoDto
         System.out.println("hiii");
         return photoRepository.findAll().stream()
-                .map(photo -> new PhotoDto(photo.getFileName(), photo.getFileUrl()))
+                .map(photo -> new PhotoDto(photo.getId(), photo.getFileName(), photo.getFileUrl()))
                 .collect(Collectors.toList());
     }
 }

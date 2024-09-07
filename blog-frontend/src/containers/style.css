@@ -318,6 +318,10 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    a {
+        padding: 0;
+        border-radius: 10px;
+    }
     .astrophotography-caption{
         display: flex;
         flex-direction: column;
