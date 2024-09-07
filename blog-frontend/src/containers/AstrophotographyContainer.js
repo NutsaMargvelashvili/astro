@@ -11,7 +11,7 @@ class AstrophotographyContainer extends Component {
         const { PhotoActions } = this.props;
         try {
             const response = await PhotoActions.getPhotoList(); // Log the fetched data
-            console.log("Fetched Data:", response.data[0].fileUrl); // This will log the fetched datas
+            console.log("Fetched Data:", response.data); // This will log the fetched datas
         } catch (e) {
             console.log("error log :" + e);
         }
@@ -33,14 +33,15 @@ class AstrophotographyContainer extends Component {
             <Fragment>
                 {error && <h1>Server Error!</h1>}
                 {!error &&
-                    <div>
+                    <div className={"astrophotography-wrapper"}>
+                        <h1>Astrophotography</h1>
                         {photos?.size === 0 ? (
                             <p>No photos available</p>
                         ) : (
                             photos?.map(photo => (
-                                <div className={"astrophotography-wrapper"} key={photo?.get('id')}>
+                                <div className={"astrophotography-image-wrapper"} key={photo?.get('id')}>
                                     <img className={"astrophotography-image"} src={photo?.get('fileUrl')} alt={photo?.get('fileName')} />
-                                    <p>{photo?.get('fileName')}</p>
+                                    {/*<p>{photo?.get('fileName')}</p>*/}
                                 </div>
                             ))
                         )}

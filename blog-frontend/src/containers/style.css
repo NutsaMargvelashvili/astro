@@ -313,7 +313,28 @@
 /*ASTROPHOTOGRAPHY*/
 
 .astrophotography-wrapper{
-    .astrophotography-image{
-        width: 100px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    h1{
+        font-size: 34px;
+        text-transform: uppercase;
+        letter-spacing: 10px;
+        color: #710338;
+        text-align: center;
+    }
+    .astrophotography-image-wrapper{
+        .astrophotography-image{
+            border-radius: 10px;
+            width: 350px;
+            height: 300px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+        .astrophotography-image:hover{
+            opacity: 80%;
+        }
     }
 }

@@ -67,4 +67,22 @@ INSERT INTO comment (body, created_date, last_modified_date, post_id, user_id) V
 , now()-5, now()-5, 1, 2);
 
 INSERT INTO photo (file_name, file_url, uploaded_date, user_id) VALUES
-    ('cat.jpg', 'https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg', now(), 1);
+    ('andromeda.jpg', 'https://astrophotographylens.com/cdn/shop/articles/astrophotography-for-beginners_b75c2337-0633-473c-a3ae-c946c921d3a2.jpg?v=1686234434&width=1000', now(), 1);
+
+INSERT INTO photo (file_name, file_url, uploaded_date, user_id) VALUES
+    ('moon.jpg', 'https://cdn.mos.cms.futurecdn.net/DMLwZCcWy25RhSYoszqsjN.jpg', now()-1, 2);
+
+INSERT INTO photo (file_name, file_url, uploaded_date, user_id) VALUES
+    ('keplerEarthlike.jpg', 'https://i.natgeofe.com/n/e98767f7-9d53-4bef-a4d1-4d94377f7848/44917.jpg', now()-2, 1);
+
+INSERT INTO photo (file_name, file_url, uploaded_date, user_id) VALUES
+    ('spinningStars.jpg', 'https://img.freepik.com/free-photo/beautiful-shot-night-sky-with-breathtaking-spinning-stars_181624-4268.jpg', now()-3, 1);
+
+INSERT INTO photo (file_name, file_url, uploaded_date, user_id) VALUES
+    ('milkyWay.jpg', 'https://exoplanets.nasa.gov/internal_resources/698/', now()-4, 2);
+
+INSERT INTO photo (file_name, file_url, uploaded_date, user_id) VALUES
+    ('blackHole.jpg', 'https://cdn.mos.cms.futurecdn.net/HsDtpFEHbDpae6wBuW5wQo.jpg', now()-5, 2);
+
+INSERT INTO photo (file_name, file_url, uploaded_date, user_id) VALUES
+    ('quasar.jpg', 'https://source.washu.edu/app/uploads/2015/12/6988808-cosmic-quasar.jpg', now()-6, 2);
