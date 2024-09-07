@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { PostPage, PostListPage, EditorPage, NotFoundPage, AstroMapPage, AstrophotographyPage } from 'pages';
+import { PostPage, PostListPage, EditorPage, NotFoundPage, AstroMapPage, AstrophotographyPage, AstrophotographyPhotoPage } from 'pages';
 import LoginContainer from 'containers/LoginContainer'
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
@@ -21,6 +21,7 @@ class App extends Component {
           <Switch>
             <Route path="/astromap" component={AstroMapPage} />
             <Route path="/astrophotography" component={AstrophotographyPage} />
+            <Route path="/photo/:id" component={AstrophotographyPhotoPage} />
             <Route path="/pages/:page" component={PostListPage} />
             <Route path="/posts/:id" component={PostPage} />
             <Route path="/editor/:id?" component={EditorPage} />

@@ -11,6 +11,7 @@ const Photo = ({ photo }) => {
         return null;
     }
 
+    console.log("Nutsaaaaaaa")
     return (
         <Fragment>
             <div className={cx("photo-wrapper")}>

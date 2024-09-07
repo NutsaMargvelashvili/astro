@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -32,14 +31,20 @@ public class PhotoController {
 
     @GetMapping("/feed")
     public ResponseEntity<List<PhotoDto>> getPhotoFeed() {
-//        System.out.println("hereeeeeeeee");
-//        // Implement this method to retrieve and return photos for the feed
-//        // For now, it could return a placeholder or empty list
-//        return new ResponseEntity<>(Collections.emptyList(), HttpStatus.OK);
         // Fetch the photo feed from the service
         List<PhotoDto> photoFeed = photoService.getPhotoFeed();
-
         // Return the feed, or an empty list if no photos exist
         return new ResponseEntity<>(photoFeed, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PhotoDto> getPhotoById(@PathVariable Long id) {
+        // Fetch the photo by ID from the service
+        PhotoDto photoDto = photoService.getPhotoById(id);
+        if (photoDto != null) {
+            return new ResponseEntity<>(photoDto, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }

@@ -13,6 +13,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -56,9 +57,19 @@ public class PhotoService {
 
     public List<PhotoDto> getPhotoFeed() {
         // Fetch photos from the repository and convert to PhotoDto
-        System.out.println("hiii");
         return photoRepository.findAll().stream()
                 .map(photo -> new PhotoDto(photo.getId(), photo.getFileName(), photo.getFileUrl()))
                 .collect(Collectors.toList());
+    }
+
+    public PhotoDto getPhotoById(Long id) {
+        // Fetch the photo by ID from the repository
+        Optional<Photo> photoOptional = photoRepository.findById(id);
+        if (photoOptional.isPresent()) {
+            Photo photo = photoOptional.get();
+            return new PhotoDto(photo.getId(), photo.getFileName(), photo.getFileUrl());
+        } else {
+            return null; // or throw an exception if preferred
+        }
     }
 }
