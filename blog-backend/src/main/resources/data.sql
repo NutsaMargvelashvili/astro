@@ -65,3 +65,6 @@ INSERT INTO comment (body, created_date, last_modified_date, post_id, user_id) V
 INSERT INTO comment (body, created_date, last_modified_date, post_id, user_id) VALUES
 ( 'What tf is MeerKAT data?'
 , now()-5, now()-5, 1, 2);
+
+INSERT INTO photo (file_name, file_url, uploaded_date, user_id) VALUES
+    ('cat.jpg', 'https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg', now(), 1);

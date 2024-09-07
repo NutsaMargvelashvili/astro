@@ -38,6 +38,7 @@ public class PostController {
 
     @GetMapping(value = "/posts")
     public ResponseEntity<List<PostDto>> getPostList(Pageable pageable) {
+        System.out.println("postsssssss");
         log.debug("REST request to get Posts : {}", pageable);
         Page<Post> posts = postService.findAllByOrderByCreatedDateDescPageable(pageable);
         Page<PostDto> postDto = posts.map(post -> new PostDto((post)));

@@ -133,6 +133,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.js")
                 .permitAll()
                 .antMatchers(HttpMethod.GET, "/api/posts/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/photos/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/comments/**").permitAll()
                 .antMatchers("/", "/error", "/api/authenticate/**", "/api/register",
                         "/auth/authenticate", "/auth/signup", "/oauth2/**", "/h2-console/**",

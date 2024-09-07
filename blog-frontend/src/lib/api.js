@@ -49,3 +49,21 @@ const getToken = () => {
   const token = Storage.local.get('__AUTH__') || Storage.session.get('__AUTH__');
   return `Bearer ${token}`
 };
+
+export const uploadPhoto = (file) => {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    return axios.post(`${API_BASE_URL}/api/photos/upload`, formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: getToken()
+        }
+    });
+};
+
+export const getPhotos = () => axios.get(`${API_BASE_URL}/api/photos/feed`, {
+    headers: {
+        Authorization: getToken()
+    }
+});
