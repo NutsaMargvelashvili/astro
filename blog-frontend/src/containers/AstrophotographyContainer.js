@@ -25,7 +25,7 @@ class AstrophotographyContainer extends Component {
     }
 
     render() {
-        const { photos, loading, error } = this.props;
+        const { photos, loading, error, isAuthenticated} = this.props;
 
         if (loading)
             return null;
@@ -37,7 +37,8 @@ class AstrophotographyContainer extends Component {
                     <div className={"astrophotography-wrapper"}>
                         <div className={"astrophotography-caption"}>
                             <h1>Astrophotography</h1>
-                            <Button className={"astrophotography-upload-btn"}>Upload Your AstroMasterpiece</Button>
+                            {isAuthenticated &&
+                                <Button className={"astrophotography-upload-btn"}>Upload Your AstroMasterpiece</Button>}
                         </div>
                         {photos?.size === 0 ? (
                             <p>No photos available</p>
@@ -64,7 +65,8 @@ export default connect(
     state => ({
         photos: state.photo?.get("photos"),
         loading: state.pender.pending["photo/GET_PHOTO_LIST"],
-        error: state.pender.failure["photo/GET_PHOTO_LIST"]
+        error: state.pender.failure["photo/GET_PHOTO_LIST"],
+        isAuthenticated: state.auth.get("isAuthenticated")
     }),
     dispatch => ({
         PhotoActions: bindActionCreators(photoActions, dispatch)
