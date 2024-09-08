@@ -5,3 +5,4 @@ export { default as NotFoundPage } from './NotFoundPage';
 export { default as AstroMapPage } from './AstroMapPage';
 export { default as AstrophotographyPage } from './AstrophotographyPage';
 export { default as AstrophotographyPhotoPage } from './AstrophotographyPhotoPage';
+export { default as AstrophotographyUploadPage } from './AstrophotographyUploadPage';

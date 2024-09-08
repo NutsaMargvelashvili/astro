@@ -30,6 +30,7 @@ import java.util.stream.Collectors;
 @Transactional
 public class UserService {
 
+
     private Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
@@ -50,6 +51,7 @@ public class UserService {
         User user = this.createUser(userDto.getEmail().toLowerCase(), userDto.getPassword(), userDto.getUserName());
         return user;
     }
+
 
     public User createUser(String email, String password, String userName) {
         User newUser = new User();

@@ -341,6 +341,7 @@
             border-radius: 40px !important;
             cursor: pointer;
             width: fit-content;
+            padding: 5px 10px;
         }
         .astrophotography-upload-btn:hover{
             color: #fff;

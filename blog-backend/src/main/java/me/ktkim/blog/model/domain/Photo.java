@@ -27,7 +27,6 @@ public class Photo {
     private String fileUrl;
 
     @Column(name = "uploaded_date", nullable = false, updatable = false)
-    @NotNull
     @CreatedDate
     private LocalDateTime uploadedDate = LocalDateTime.now();
 
@@ -36,8 +35,8 @@ public class Photo {
     private LocalDateTime lastModifiedDate = LocalDateTime.now();
 
     @ManyToOne
+//    @NotNull(message = "User must not be null")
     @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
-    @NotNull
     private User user;
 
     public Long getId() {

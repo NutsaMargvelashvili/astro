@@ -1,5 +1,6 @@
 package me.ktkim.blog.service;
 
+import me.ktkim.blog.model.domain.User;
 import me.ktkim.blog.model.dto.PhotoDto;
 import me.ktkim.blog.model.domain.Photo;
 import me.ktkim.blog.repository.PhotoRepository;
@@ -23,10 +24,15 @@ public class PhotoService {
     @Autowired
     private PhotoRepository photoRepository;
 
+    @Autowired
+    private UserService userService;
+
     // Path where images will be saved
     private final String uploadDir = "/home/newuser/Desktop/spring-boot-react-blog-master/blog-backend/src/main/java/me/ktkim/blog/images";
 
     public PhotoDto savePhoto(String fileName, InputStream inputStream) {
+        System.out.println("Saving photoooo");
+
         // Generate a unique file name to avoid collisions
         String uniqueFileName = UUID.randomUUID().toString() + "_" + fileName;
         Path filePath = Paths.get(uploadDir, uniqueFileName);
@@ -42,13 +48,22 @@ public class PhotoService {
         // Construct the file URL or path (adjust as needed for your application)
         String fileUrl = "/images/" + uniqueFileName;
 
+        User user = new User();
+        user.setId(2L); // Set the ID manually, or use an appropriate identifier
+        user.setEmail("user1@mail.com");
+        user.setUserName("user1");
+        user.setCreatedBy("system");
+        user.setCreatedDate(LocalDateTime.now()); // Or set a specific date if needed
+        if (user == null) {
+            throw new RuntimeException("User not found: ");
+        }
+
         // Create and save a Photo entity
         Photo photo = new Photo();
         photo.setFileName(uniqueFileName);
         photo.setFileUrl(fileUrl);
         photo.setUploadedDate(LocalDateTime.now());
-        // Assuming you have a method to set the user
-        // photo.setUser(user);
+        photo.setUser(user); // Set the user who uploaded the photo
 
         photo = photoRepository.save(photo);
 

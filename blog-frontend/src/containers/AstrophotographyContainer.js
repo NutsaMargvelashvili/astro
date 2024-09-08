@@ -38,7 +38,12 @@ class AstrophotographyContainer extends Component {
                         <div className={"astrophotography-caption"}>
                             <h1>Astrophotography</h1>
                             {isAuthenticated &&
-                                <Button className={"astrophotography-upload-btn"}>Upload Your AstroMasterpiece</Button>}
+                                <Button
+                                    tag={Link}
+                                    to={"/astrophotography/upload"}
+                                    className={"astrophotography-upload-btn"}>
+                                    Upload Your AstroMasterpiece
+                                </Button>}
                         </div>
                         {photos?.size === 0 ? (
                             <p>No photos available</p>
