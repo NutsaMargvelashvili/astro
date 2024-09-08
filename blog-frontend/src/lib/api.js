@@ -27,6 +27,16 @@ export const deletePost = (id) => axios.delete(`${API_BASE_URL}/api/posts/${id}`
         }
     });
 export const login = (email, password) => axios.post(`${API_BASE_URL}/auth/authenticate`, { email, password });
+
+// Register API call
+export const registerUser = (userData) => {
+    return axios.post(`${API_BASE_URL}/register`, userData, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};
+
 export const getUser = () => axios.post(`${API_BASE_URL}/auth/user`, {},
     {
         headers: {
@@ -53,38 +63,7 @@ export const uploadPhoto = (file) => {
     if(file){
         formData.append('file', file);
     }
-    console.log(file instanceof File);
-    console.log(file)
-    console.log('File:', file);
-    console.log('File Name:', file.name);
-    console.log('File Size:', file.size);
-    console.log('File Type:', file.type);
-    console.log(formData);
-    for (let pair of formData.entries()) {
-        console.log(`${pair[0]}: ${pair[1]}`);
-    }
-    for (let pair of formData.entries()) {
-        if (pair[1] instanceof File) {
-            console.log(`${pair[0]}:`);
-            console.log(`Name: ${pair[1].name}`);
-            console.log(`Size: ${pair[1].size}`);
-            console.log(`Type: ${pair[1].type}`);
-        } else {
-            console.log(`${pair[0]}: ${pair[1]}`);
-        }
-    }
 
-    // Define the fake object
-    const fakePhoto = {
-        id: 1,
-        fileName: "sunrise.jpg",
-        fileUrl: "http://example.com/images/sunrise.jpg",
-        uploadedDate: "2024-09-01T10:00:00",
-        lastModifiedDate: "2024-09-01T12:00:00",
-        user: {
-            id: 1 // Ensure this matches an existing user ID
-        }
-    };
     return axios.post(`${API_BASE_URL}/api/photos/upload`, formData, {
         headers: {
             'Content-Type': 'multipart/form-data',

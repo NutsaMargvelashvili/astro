@@ -11,7 +11,6 @@ public class PhotoDto {
     public PhotoDto() {}
 
     public PhotoDto(Long id, String fileName, String fileUrl) {
-        System.out.println("here");
         this.id = id;
         this.fileName = fileName;
         this.fileUrl = fileUrl;

@@ -31,7 +31,6 @@ public class PhotoService {
     private final String uploadDir = "../../../spring-boot-react-blog-master/blog-frontend/src/images";
 
     public PhotoDto savePhoto(String fileName, InputStream inputStream) {
-        System.out.println("Saving photo");
 
         // Generate a unique file name to avoid collisions
         String uniqueFileName = UUID.randomUUID().toString() + "_" + fileName;

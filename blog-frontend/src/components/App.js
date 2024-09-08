@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { PostPage, PostListPage, EditorPage, NotFoundPage, AstroMapPage, AstrophotographyPage, AstrophotographyPhotoPage, AstrophotographyUploadPage } from 'pages';
 import LoginContainer from 'containers/LoginContainer'
+import RegisterContainer from 'containers/RegisterContainer'
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
 import * as authActions from "store/modules/auth";
@@ -17,7 +18,7 @@ class App extends Component {
     return (
         <div>
           <Route path="/login" component={LoginContainer} />
-
+          <Route path="/register" component={RegisterContainer} />
           <Switch>
             <Route path="/astromap" component={AstroMapPage} />
             <Route path="/astrophotography/upload" component={AstrophotographyUploadPage} />

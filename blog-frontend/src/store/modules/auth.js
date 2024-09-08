@@ -1,22 +1,24 @@
 import { createAction, handleActions } from 'redux-actions';
-
 import { Map, fromJS } from 'immutable';
 import { pender } from 'redux-pender';
-
 import * as api from 'lib/api';
 import { Storage } from 'lib/storage';
 
-//action types
-const LOGIN = 'auth/LOGIN'
-const SOCIAL_LOGIN = 'auth/SOCIAL_LOGIN'
-const LOGOUT = 'auth/LOGOUT'
+// Action Types
+const LOGIN = 'auth/LOGIN';
+const SOCIAL_LOGIN = 'auth/SOCIAL_LOGIN';
+const LOGOUT = 'auth/LOGOUT';
 const GET_USER = 'auth/GET_USER';
+const REGISTER = 'auth/REGISTER'; // New action for register
 
+// Action Creators
 export const login = createAction(LOGIN, api.login);
 export const socialLogin = createAction(SOCIAL_LOGIN);
 export const logout = createAction(LOGOUT);
 export const getUser = createAction(GET_USER, api.getUser);
+export const register = createAction(REGISTER, api.registerUser); // New register action
 
+// Initial State
 const initialState = Map({
   isAuthenticated: false,
   loginSuccess: false,
@@ -24,62 +26,88 @@ const initialState = Map({
   currentUser: Map({})
 });
 
-export default handleActions({
-  [LOGOUT]: (state, action) => {
-    console.log("LOGOUT action")
+// Helper Function to Store Token
+const storeAuthToken = (bearerToken) => {
+  const jwt = bearerToken.slice(7); // Strip 'Bearer '
+  const rememberMe = false; // Assuming false; adjust if needed
+  if (rememberMe) {
+    Storage.local.set("__AUTH__", jwt);
+  } else {
+    Storage.session.set("__AUTH__", jwt);
+  }
+};
 
-    if (Storage.local.get("__AUTH__")) {
-      Storage.local.remove("__AUTH__");
-    }
-    if (Storage.session.get("__AUTH__")) {
-      Storage.session.remove("__AUTH__");
-    }
+// Reducer
+export default handleActions({
+  [LOGOUT]: (state) => {
+    console.log("LOGOUT action");
+
+    Storage.local.remove("__AUTH__");
+    Storage.session.remove("__AUTH__");
 
     return state.set('isAuthenticated', false)
-      .set('loginSuccess', false);
+        .set('loginSuccess', false)
+        .set('currentUser', Map({}));
   },
+
   [SOCIAL_LOGIN]: (state, action) => {
-    console.log("SOCIAL LOGIN onSuccess")
-    const rememberMe = false;
-    if (rememberMe) {
-      Storage.local.set("__AUTH__", action.payload);
-    } else {
-      Storage.session.set("__AUTH__", action.payload);
-    }
+    console.log("SOCIAL LOGIN onSuccess");
+
+    storeAuthToken(action.payload);
+
     return state.set('isAuthenticated', true);
   },
+
   ...pender({
     type: LOGIN,
     onSuccess: (state, action) => {
-      console.log("LOGIN onSuccess")
-      const { data: content } = action.payload;
-      const bearerToken = content.token;
-      if (bearerToken && bearerToken.slice(0, 7) === 'Bearer ') {
-        const jwt = bearerToken.slice(7, bearerToken.length);
-        const rememberMe = false;
-        if (rememberMe) {
-          Storage.local.set("__AUTH__", jwt);
-        } else {
-          Storage.session.set("__AUTH__", jwt);
-        }
+      console.log("LOGIN onSuccess");
+
+      const { token: bearerToken } = action.payload.data;
+      if (bearerToken && bearerToken.startsWith('Bearer ')) {
+        storeAuthToken(bearerToken);
       }
+
       return state.set('isAuthenticated', true);
     },
-    onFailure: (state, action) => {
-      console.log("LOGIN onFailure")
+    onFailure: (state) => {
+      console.log("LOGIN onFailure");
+      return state.set('isAuthenticated', false)
+          .set('loginError', true);
+    }
+  }),
+
+  ...pender({
+    type: REGISTER, // Handle register
+    onSuccess: (state, action) => {
+      console.log("REGISTER onSuccess");
+
+      const { token: bearerToken } = action.payload.data;
+      if (bearerToken && bearerToken.startsWith('Bearer ')) {
+        storeAuthToken(bearerToken);
+      }
+
+      return state.set('isAuthenticated', true);
+    },
+    onFailure: (state) => {
+      console.log("REGISTER onFailure");
       return state.set('isAuthenticated', false);
     }
   }),
+
   ...pender({
     type: GET_USER,
     onSuccess: (state, action) => {
-      const { data: content } = action.payload;
+      console.log("GET_USER onSuccess");
+
       return state.set('isAuthenticated', true)
-                  .set('currentUser', fromJS(content));
+          .set('currentUser', fromJS(action.payload.data));
     },
-    onFailure: (state, action) => {
-      console.log("GET_USER onFailure")
-      return state.set('isAuthenticated', false);
+    onFailure: (state) => {
+      console.log("GET_USER onFailure");
+      return state.set('isAuthenticated', false)
+          .set('currentUser', Map({}));
     }
   })
+
 }, initialState);
