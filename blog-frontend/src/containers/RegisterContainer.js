@@ -17,7 +17,6 @@ class RegisterContainer extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        console.log("dfkajnfkj")
         if (this.props !== prevProps) {
             this.setState({ showModal: this.props.showModal });
         }
