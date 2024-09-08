@@ -28,10 +28,10 @@ public class PhotoService {
     private UserService userService;
 
     // Path where images will be saved
-    private final String uploadDir = "/home/newuser/Desktop/spring-boot-react-blog-master/blog-backend/src/main/java/me/ktkim/blog/images";
+    private final String uploadDir = "../../../spring-boot-react-blog-master/blog-frontend/src/images";
 
     public PhotoDto savePhoto(String fileName, InputStream inputStream) {
-        System.out.println("Saving photoooo");
+        System.out.println("Saving photo");
 
         // Generate a unique file name to avoid collisions
         String uniqueFileName = UUID.randomUUID().toString() + "_" + fileName;
@@ -45,28 +45,35 @@ public class PhotoService {
             throw new RuntimeException("Failed to store file", e);
         }
 
-        // Construct the file URL or path (adjust as needed for your application)
+        // Construct the file URL
+        // Assuming your application is serving static files from a path like "/images"
+        // Adjust base URL as needed for your application
         String fileUrl = "/images/" + uniqueFileName;
-
-        User user = new User();
-        user.setId(2L); // Set the ID manually, or use an appropriate identifier
-        user.setEmail("user1@mail.com");
-        user.setUserName("user1");
-        user.setCreatedBy("system");
-        user.setCreatedDate(LocalDateTime.now()); // Or set a specific date if needed
-        if (user == null) {
-            throw new RuntimeException("User not found: ");
-        }
 
         // Create and save a Photo entity
         Photo photo = new Photo();
         photo.setFileName(uniqueFileName);
-        photo.setFileUrl(fileUrl);
+        photo.setFileUrl(fileUrl); // Set the dynamically generated file URL
         photo.setUploadedDate(LocalDateTime.now());
+
+        // Create and set the user
+        User user = new User();
+        user.setId(2L); // Use an appropriate user identifier
+        user.setEmail("user1@mail.com");
+        user.setUserName("user1");
+        user.setCreatedBy("system");
+        user.setCreatedDate(LocalDateTime.now()); // Set a specific date if needed
+
+        if (user == null) {
+            throw new RuntimeException("User not found");
+        }
+
         photo.setUser(user); // Set the user who uploaded the photo
 
+        // Save the photo entity
         photo = photoRepository.save(photo);
 
+        // Return a DTO with the saved photo details
         return new PhotoDto(photo.getId(), photo.getFileName(), photo.getFileUrl());
     }
 

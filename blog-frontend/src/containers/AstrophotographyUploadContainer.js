@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as photoActions from "store/modules/photo"; // Adjust path based on your project structure
 import { Button, Form, FormGroup, Label, Input, Alert } from "reactstrap";
-import { withRouter } from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 
 class AstrophotographyUploadContainer extends Component {
     state = {
@@ -44,7 +44,13 @@ class AstrophotographyUploadContainer extends Component {
 
         return (
             <Fragment>
-                <h1>Upload Photo</h1>
+                <div className={"astrophotography-upload-caption"}>
+                    <h1>Upload Photo</h1>
+                    <Button
+                        tag={Link}
+                        to={"/astrophotography"}>
+                        Back
+                    </Button>                </div>
                 {!isAuthenticated && <p>You need to be logged in to upload photos.</p>}
                 {isAuthenticated && (
                     <Form onSubmit={this.handleUpload} enctype="multipart/form-data">

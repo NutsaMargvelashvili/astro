@@ -362,3 +362,15 @@
 
     }
 }
+
+.astrophotography-upload-caption{
+    display: flex;
+    justify-content: space-between;
+    .btn {
+        color: #fff;
+        background-color: #710338 !important;
+        border-radius: 40px !important;
+        cursor: pointer;
+        height: 40px;
+    }
+}

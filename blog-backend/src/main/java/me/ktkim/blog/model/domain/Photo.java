@@ -20,7 +20,7 @@ public class Photo {
     @Column(name = "photo_id")
     private Long id;
 
-    @Column(name = "file_name", nullable = false, unique = true)
+    @Column(name = "file_name", nullable = false)
     private String fileName;
 
     @Column(name = "file_url", nullable = false)
